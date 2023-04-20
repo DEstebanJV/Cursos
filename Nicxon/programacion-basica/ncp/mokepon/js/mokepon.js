@@ -92,6 +92,16 @@ function crearMensaje(resultado) {
     sectionMensajes.appendChild(parrafo)
 }
 
+function crearMensajeFinal(resultadoFinal) {
+    let sectionMensajes = document.getElementById('mensajes');
+    
+    let parrafo = document.createElement('p');
+
+    parrafo.innerHTML = resultadoFinal;
+    
+    sectionMensajes.appendChild(parrafo)
+}
+
 function combate() {
     let spanVidasJugador = document.getElementById('vidas-jugador');
     let spanVidasRival = document.getElementById('vidas-rival');
@@ -106,6 +116,24 @@ function combate() {
         vidasJugador--;
         spanVidasJugador.innerHTML = vidasJugador;
     }
+
+    revisarVidas();
+}
+
+function revisarVidas() {
+    if(vidasRival == 0) {
+        crearMensajeFinal('Felicitaciones has ganado el juego, la mascota rival  no tiene vidas 🥳');
+        deshabilitarBotones();
+    } else if (vidasJugador == 0) {
+        crearMensajeFinal('Has perdido el juego, tú mascota no tiene vidas 💔');
+        deshabilitarBotones();
+    }
+}
+
+function deshabilitarBotones() {
+    document.getElementById('boton-fuego').disabled = true;
+    document.getElementById('boton-agua').disabled = true;
+    document.getElementById('boton-tierra').disabled = true;
 }
 
 function aleatorio(min, max) {
