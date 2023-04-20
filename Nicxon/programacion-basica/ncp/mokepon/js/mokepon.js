@@ -1,5 +1,7 @@
 let ataqueJugador;
 let ataqueRival;
+let vidasJugador = 3;
+let vidasRival = 3;
 
 function iniciarJuego(){
     let botonMascotaJugador = document.getElementById('boton-mascota');
@@ -13,6 +15,10 @@ function iniciarJuego(){
     botonTierra.addEventListener('click', ataqueTierra);
 }
 
+function llamarSectionAtaque() {
+    document.getElementById('seleccionar-ataque').style.display = 'block';
+}
+
 function seleccionarMascotaJugador() {
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
@@ -21,10 +27,13 @@ function seleccionarMascotaJugador() {
 
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = 'Hipodoge';
+        llamarSectionAtaque();
     } else if (inputCapipepo.checked){
         spanMascotaJugador.innerHTML = 'Capipepo';
+        llamarSectionAtaque();
     } else if (inputRatigueya.checked){
         spanMascotaJugador.innerHTML = 'Ratigueya';
+        llamarSectionAtaque();
     } else {
         alert('Selecciona una mascota')
     }
@@ -84,12 +93,18 @@ function crearMensaje(resultado) {
 }
 
 function combate() {
+    let spanVidasJugador = document.getElementById('vidas-jugador');
+    let spanVidasRival = document.getElementById('vidas-rival');
     if (ataqueRival == ataqueJugador) {
         crearMensaje('Empate');
     } else if (ataqueJugador == 'FUEGO' && ataqueRival == 'TIERRA' || ataqueJugador == 'AGUA' && ataqueRival == 'FUEGO' || ataqueJugador == 'TIERRA' && ataqueRival == 'AGUA') {
         crearMensaje('Ganaste');
+        vidasRival--;
+        spanVidasRival.innerHTML = vidasRival;
     } else {
         crearMensaje('Perdiste');
+        vidasJugador--;
+        spanVidasJugador.innerHTML = vidasJugador;
     }
 }
 
