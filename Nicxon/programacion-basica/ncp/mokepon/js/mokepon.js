@@ -32,10 +32,6 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaRival();
 }
 
-function aleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
 function seleccionarMascotaRival() {
     let mascotaRival = aleatorio(1,3);
     let spanMascotaRival = document.getElementById('mascota-rival');
@@ -74,6 +70,21 @@ function ataqueAleatorioRival() {
     } else {
         ataqueRival = 'TIERRA';
     }
+
+    crearMensaje();
+}
+
+function crearMensaje() {
+    let sectionMensajes = document.getElementById('mensajes');
+    
+    let parrafo = document.createElement('p');
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueRival + ' - PENDIENTE';
+    
+    sectionMensajes.appendChild(parrafo)
+}
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 window.addEventListener('load', iniciarJuego);
