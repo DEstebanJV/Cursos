@@ -19,6 +19,26 @@ function seleccionarMascotaJugador() {
     } else {
         alert('Selecciona una mascota')
     }
+
+    seleccionarMascotaRival();
 }
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function seleccionarMascotaRival() {
+    let ataqueAleatorio = aleatorio(1,3);
+    let spanMascotaRival = document.getElementById('mascota-rival');
+
+    if (ataqueAleatorio == 1){
+        spanMascotaRival.innerHTML = 'Hipodoge';
+    } else if (ataqueAleatorio == 2){
+        spanMascotaRival.innerHTML = 'Capipepo';
+    } else {
+        spanMascotaRival.innerHTML = 'Ratigueya';
+    }
+}
+
 
 window.addEventListener('load', iniciarJuego);
