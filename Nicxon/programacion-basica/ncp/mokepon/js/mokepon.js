@@ -4,6 +4,7 @@ let vidasJugador = 3;
 let vidasRival = 3;
 
 function iniciarJuego(){
+    document.getElementById('seleccionar-ataque').style.display = 'none';
     let botonMascotaJugador = document.getElementById('boton-mascota');
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
 
@@ -16,6 +17,7 @@ function iniciarJuego(){
 
     let botonReiniciar = document.getElementById('boton-reiniciar');
     botonReiniciar.addEventListener('click',reiniciarJuego);
+    document.getElementById('reiniciar').style.display = 'none';
 }
 
 function llamarSectionAtaque() {
@@ -23,6 +25,7 @@ function llamarSectionAtaque() {
 }
 
 function seleccionarMascotaJugador() {
+    document.getElementById('seleccionar-mascota').style.display = 'none';
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
@@ -107,6 +110,7 @@ function crearMensajeFinal(resultadoFinal) {
     document.getElementById('boton-fuego').disabled = true;
     document.getElementById('boton-agua').disabled = true;
     document.getElementById('boton-tierra').disabled = true;
+    document.getElementById('reiniciar').style.display = 'block';
 }
 
 function combate() {
