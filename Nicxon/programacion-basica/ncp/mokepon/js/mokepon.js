@@ -13,6 +13,9 @@ function iniciarJuego(){
     botonAgua.addEventListener('click', ataqueAgua);
     let botonTierra = document.getElementById('boton-tierra');
     botonTierra.addEventListener('click', ataqueTierra);
+
+    let botonReiniciar = document.getElementById('boton-reiniciar');
+    botonReiniciar.addEventListener('click',reiniciarJuego);
 }
 
 function llamarSectionAtaque() {
@@ -100,6 +103,10 @@ function crearMensajeFinal(resultadoFinal) {
     parrafo.innerHTML = resultadoFinal;
     
     sectionMensajes.appendChild(parrafo)
+
+    document.getElementById('boton-fuego').disabled = true;
+    document.getElementById('boton-agua').disabled = true;
+    document.getElementById('boton-tierra').disabled = true;
 }
 
 function combate() {
@@ -123,17 +130,13 @@ function combate() {
 function revisarVidas() {
     if(vidasRival == 0) {
         crearMensajeFinal('Felicitaciones has ganado el juego, la mascota rival  no tiene vidas 🥳');
-        deshabilitarBotones();
     } else if (vidasJugador == 0) {
         crearMensajeFinal('Has perdido el juego, tú mascota no tiene vidas 💔');
-        deshabilitarBotones();
     }
 }
 
-function deshabilitarBotones() {
-    document.getElementById('boton-fuego').disabled = true;
-    document.getElementById('boton-agua').disabled = true;
-    document.getElementById('boton-tierra').disabled = true;
+function reiniciarJuego(){
+    location.reload();
 }
 
 function aleatorio(min, max) {
