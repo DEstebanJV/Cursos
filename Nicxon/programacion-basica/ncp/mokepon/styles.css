@@ -26,17 +26,20 @@ body {
 
 .tarjeta-de-mokepon {
     display: inline-block;
-    width: 100px;
+    width: 180px;
     background-color: aquamarine;
     box-sizing: border-box;
     border: 1px solid lightcoral;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .tarjeta-de-mokepon:hover {
     background-color: gray;
     border: 1px solid red;
 }
-.tarjeta-de-mokepon:focus {
+input:checked + label {
     background-color: brown;
     border: 1px solid white;
 }
@@ -57,6 +60,7 @@ input{
     height: 25px;
     font-weight: bold;
     border-radius: 15px;
+    margin: 20px 0px 0px 0px;
 }
 #boton-mascota:hover{
     background-color: gray;
