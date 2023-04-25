@@ -6,9 +6,6 @@ const botonReiniciar = document.getElementById('boton-reiniciar');
 const seccionReiniciar = document.getElementById('reiniciar');
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
-const inputHipodoge = document.getElementById('hipodoge');
-const inputCapipepo = document.getElementById('capipepo');
-const inputRatigueya = document.getElementById('ratigueya');
 const spanMascotaJugador = document.getElementById('mascota-jugador');
 
 const spanMascotaRival = document.getElementById('mascota-rival');
@@ -21,6 +18,11 @@ const spanVidasJugador = document.getElementById('vidas-jugador');
 const spanVidasRival = document.getElementById('vidas-rival');
 
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+const CONTENEDORTARJETAS = document.getElementById('contenedor-tarjetas');
+let opcionDeMokepones;
+let inputHipodoge;
+let inputCapipepo;
+let inputRatigueya;
 
 let ataqueJugador;
 let ataqueRival;
@@ -39,8 +41,6 @@ class Mokepon {
 let hipodoge = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5);
 let capipepo = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5);
 let ratigueya = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5);
-
-mokepones.push(hipodoge,capipepo,ratigueya);
 
 hipodoge.ataques.push(
     {nombre: 'Agua 💧', id: 'boton-agua'},
@@ -64,8 +64,26 @@ capipepo.ataques.push(
     {nombre: 'Tierra 🌱', id: 'boton-tierra'}    
 )
 
+mokepones.push(hipodoge,capipepo,ratigueya);
+
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = 'none';
+
+    mokepones.forEach((mokepon)=>{
+        opcionDeMokepones = `<input type="radio" name="mascota" id=${mokepon.nombre} />
+        <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
+            <p>${mokepon.nombre}</p>
+            <img src=${mokepon.foto} alt=${mokepon.nombre}>
+        </label>`
+        
+        CONTENEDORTARJETAS.innerHTML += opcionDeMokepones;
+
+        inputHipodoge = document.getElementById('Hipodoge');
+        inputCapipepo = document.getElementById('Capipepo');
+        inputRatigueya = document.getElementById('Ratigueya');
+
+    })
+    
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
     botonFuego.addEventListener('click', ataqueFuego);
     botonAgua.addEventListener('click', ataqueAgua);
