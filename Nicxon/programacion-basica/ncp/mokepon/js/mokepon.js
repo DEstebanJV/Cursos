@@ -90,22 +90,25 @@ function ataqueAleatorioRival() {
 }
 
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('mensajes');
+    let sectionMensajes = document.getElementById('resultado');
+    let sectionAtaquesJugador = document.getElementById('ataques-jugador');
+    let sectionAtaquesRival = document.getElementById('ataques-rival');
     
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueRival + ' - ' + resultado;
-    
-    sectionMensajes.appendChild(parrafo)
+    let nuevoAtaqueJugador = document.createElement('p');
+    let nuevoAtaqueRival = document.createElement('p');
+
+    sectionMensajes.innerHTML = resultado;
+    nuevoAtaqueJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueRival.innerHTML = ataqueRival;
+
+    sectionAtaquesJugador.appendChild(nuevoAtaqueJugador);
+    sectionAtaquesRival.appendChild(nuevoAtaqueRival);
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('mensajes');
-    
-    let parrafo = document.createElement('p');
+    let sectionMensajes = document.getElementById('resultado');
 
-    parrafo.innerHTML = resultadoFinal;
-    
-    sectionMensajes.appendChild(parrafo)
+    sectionMensajes.innerHTML = resultadoFinal;
 
     document.getElementById('boton-fuego').disabled = true;
     document.getElementById('boton-agua').disabled = true;
