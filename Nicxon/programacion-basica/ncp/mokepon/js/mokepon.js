@@ -21,13 +21,14 @@ const DIVATAQUES = document.getElementById('ataques');
 let botonFuego;
 let botonAgua;
 let botonTierra;
+let botones = [];
 
 let opcionDeMokepones;
 let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
 let mascotaJugador;
-let ataqueJugador;
+let ataqueJugador=[];
 let ataqueRival;
 let vidasJugador = 3;
 let vidasRival = 3;
@@ -130,35 +131,38 @@ function extraerAtaques(mascota) {
 
 function mostrarAtaques(ataques) {
     ataques.forEach((ataque)=>{
-        DIVATAQUES.innerHTML += `<button class="boton-ataque" id=${ataque.id} >${ataque.nombre}</button>`
+        DIVATAQUES.innerHTML += `<button class="boton-ataque BAtaque" id=${ataque.id} >${ataque.nombre}</button>`
     })
     botonFuego = document.getElementById('boton-fuego');
     botonAgua = document.getElementById('boton-agua');
     botonTierra = document.getElementById('boton-tierra');
-    botonFuego.addEventListener('click', ataqueFuego);
-    botonAgua.addEventListener('click', ataqueAgua);
-    botonTierra.addEventListener('click', ataqueTierra);
+    botones = document.querySelectorAll('.BAtaque');
+
+}
+
+function secuenciaAtaque(){
+    botones.forEach((boton)=>{
+        boton.addEventListener('click', (e)=>{
+            if (e.target.textContent === 'Fuego 🔥') {
+                ataqueJugador.push('FUEGO')
+                boton.style.background = '#112f58'
+            } else if (e.target.textContent === 'Agua 💧'){
+                ataqueJugador.push('AGUA')
+                boton.style.background = '#112f58'
+            } else if (e.target.textContent === 'Tierra 🌱'){
+                ataqueJugador.push('TIERRA')
+                boton.style.background = '#112f58'
+            }
+        })
+    })
 }
 
 function seleccionarMascotaRival() {
     let mascotaRival = aleatorio(0, mokepones.length-1);
     spanMascotaRival.innerHTML = mokepones[mascotaRival].nombre;
+    secuenciaAtaque()
 }
 
-function ataqueFuego() {
-    ataqueJugador = 'FUEGO';
-    ataqueAleatorioRival();
-}
-
-function ataqueAgua() {
-    ataqueJugador = 'AGUA';
-    ataqueAleatorioRival();
-}
-
-function ataqueTierra() {
-    ataqueJugador = 'TIERRA';
-    ataqueAleatorioRival();
-}
 
 function ataqueAleatorioRival() {
     let ataqueAleatorio = aleatorio(1,3);
