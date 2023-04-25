@@ -75,7 +75,7 @@ function iniciarJuego(){
             <p>${mokepon.nombre}</p>
             <img src=${mokepon.foto} alt=${mokepon.nombre}>
         </label>`
-        
+
         CONTENEDORTARJETAS.innerHTML += opcionDeMokepones;
 
         inputHipodoge = document.getElementById('Hipodoge');
@@ -99,13 +99,13 @@ function llamarSectionAtaque() {
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'; 
     if (inputHipodoge.checked){
-        spanMascotaJugador.innerHTML = 'Hipodoge';
+        spanMascotaJugador.innerHTML = inputHipodoge.id;
         llamarSectionAtaque();
     } else if (inputCapipepo.checked){
-        spanMascotaJugador.innerHTML = 'Capipepo';
+        spanMascotaJugador.innerHTML = inputCapipepo.id;
         llamarSectionAtaque();
     } else if (inputRatigueya.checked){
-        spanMascotaJugador.innerHTML = 'Ratigueya';
+        spanMascotaJugador.innerHTML = inputRatigueya.id;
         llamarSectionAtaque();
     } else {
         alert('Selecciona una mascota')
