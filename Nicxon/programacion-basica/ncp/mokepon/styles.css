@@ -18,7 +18,7 @@ body {
     font-style: italic;
 }
 
-#seleccionar-mascota, #seleccionar-ataque, #seccion-titulo {  
+#seleccionar-mascota, #seleccionar-ataque {  
     display: flex;
     flex-direction: column;
     align-items: center;

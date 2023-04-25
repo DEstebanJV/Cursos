@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <section id="seccion-titulo">
-        <h1 class="titulo">MOKEPON! 🔥💧🌱</h1>
-    </section>
-    
     <section id="seleccionar-mascota">
+        <h1 class="titulo">MOKEPON! 🔥💧🌱</h1>
         <h2 class="subtitulo">Elige a tu mascota:</h2>
         <div class="div-mascota">
             <input type="radio" name="mascota" id="hipodoge" />
@@ -44,23 +41,24 @@
 
         <h2>Elige tu ataque:</h2>
 
-        <p>Tú mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
-        <p>La mascota <span id="mascota-rival"></span> rival tiene <span id="vidas-rival">3</span> vidas</p>
-
-        <p>
+        <div>
             <button class="boton-ataque" id="boton-fuego">Fuego 🔥</button>
             <button class="boton-ataque" id="boton-agua">Agua 💧</button>
             <button class="boton-ataque" id="boton-tierra">Tierra 🌱</button>
-        </p>
-    </section >
-        
-    <section id="mensajes">
-    </section>
+        </div>
 
-    <section id="reiniciar">
-        <button id="boton-reiniciar">Reiniciar</button>
-    </section>
-    
+        <div>
+            <section id="mensajes">
+            </section>
+            <section id="reiniciar">
+                <button id="boton-reiniciar">Reiniciar</button>
+            </section>
+        </div>
+        <div>
+            <p>Tú mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+            <p>La mascota <span id="mascota-rival"></span> rival tiene <span id="vidas-rival">3</span> vidas</p>    
+        </div>
+    </section >
 </body>
 
 </html>
