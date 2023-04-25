@@ -22,6 +22,7 @@ let botonFuego;
 let botonAgua;
 let botonTierra;
 let botones = [];
+let ataquesMokeponRival;
 
 let opcionDeMokepones;
 let inputHipodoge;
@@ -29,7 +30,7 @@ let inputCapipepo;
 let inputRatigueya;
 let mascotaJugador;
 let ataqueJugador=[];
-let ataqueRival;
+let ataqueRival=[];
 let vidasJugador = 3;
 let vidasRival = 3;
 let mokepones = [];
@@ -137,7 +138,6 @@ function mostrarAtaques(ataques) {
     botonAgua = document.getElementById('boton-agua');
     botonTierra = document.getElementById('boton-tierra');
     botones = document.querySelectorAll('.BAtaque');
-
 }
 
 function secuenciaAtaque(){
@@ -153,6 +153,7 @@ function secuenciaAtaque(){
                 ataqueJugador.push('TIERRA')
                 boton.style.background = '#112f58'
             }
+            ataqueAleatorioRival()
         })
     })
 }
@@ -160,19 +161,21 @@ function secuenciaAtaque(){
 function seleccionarMascotaRival() {
     let mascotaRival = aleatorio(0, mokepones.length-1);
     spanMascotaRival.innerHTML = mokepones[mascotaRival].nombre;
+    ataquesMokeponRival = mokepones[mascotaRival].ataques;
     secuenciaAtaque()
 }
 
 
 function ataqueAleatorioRival() {
-    let ataqueAleatorio = aleatorio(1,3);
-    if (ataqueAleatorio == 1) {
-        ataqueRival = 'FUEGO';
-    } else if (ataqueAleatorio == 2) {
-        ataqueRival = 'AGUA';
+    let ataqueAleatorio = aleatorio(0,ataquesMokeponRival.length-1);
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
+        ataqueRival.push('FUEGO');
+    } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
+        ataqueRival.push('AGUA');
     } else {
-        ataqueRival = 'TIERRA';
+        ataqueRival.push('TIERRA');
     }
+    console.log(ataqueRival)
     combate();
 }
 
