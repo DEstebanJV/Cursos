@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 body {
     background: rgb(110,107,162);
-    background: linear-gradient(90deg, rgba(110,107,162,1) 14%, rgba(82,191,168,1) 44%, rgba(0,212,255,1) 100%)
+    background: linear-gradient(90deg, rgba(110,107,162,1) 14%, rgba(82,191,168,1) 44%, rgba(0,212,255,1) 100%);
+    font-family: 'Fredoka One', cursive;
 }
+
 .titulo {
-    color: lightcoral;
+    color: white;
     width: 320px;
     height: 42px;
-    background-color: teal;
     text-align: center;
     vertical-align: middle;
     font-size: 30px;
@@ -26,15 +28,37 @@ body {
     display: inline-block;
     width: 100px;
     background-color: aquamarine;
-    padding: 10px;
     box-sizing: border-box;
     border: 1px solid lightcoral;
+    border-radius: 20px;
+}
+.tarjeta-de-mokepon:hover {
+    background-color: gray;
+    border: 1px solid red;
+}
+.tarjeta-de-mokepon:focus {
+    background-color: brown;
+    border: 1px solid white;
+}
+.tarjeta-de-mokepon img {
+    width: 90px;
+}
+input{
+    display: none;
 }
 
 .div-mascota {
-    height: 50px;
+    display: flex;
+    gap: 10px;
 }
-.div-mascota[type="radio"]:checked + label {
-	border: 2px solid #3CCF4E;
-	color: #3CCF4E;
+#boton-mascota{
+    background-color: burlywood;
+    color: black;
+    height: 25px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+#boton-mascota:hover{
+    background-color: gray;
+    border: 1px solid red;
 }
