@@ -24,6 +24,7 @@ body {
     align-items: center;
 }
 
+
 .tarjeta-de-mokepon {
     display: inline-block;
     width: 180px;
@@ -109,4 +110,17 @@ input{
     display: grid;
     grid-template-columns: 100px 100px;
     grid-row: auto;
+    text-align: center;
+}
+
+@media (max-width:560px) {
+    .div-mascota{
+        flex-direction: column;
+    }
+}
+@media (max-width:400px) {
+    .botones-ataques {
+        display: flex;
+        flex-direction: column;
+    }
 }
