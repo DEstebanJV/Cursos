@@ -21,7 +21,7 @@ function iniciarJuego(){
 }
 
 function llamarSectionAtaque() {
-    document.getElementById('seleccionar-ataque').style.display = 'block';
+    document.getElementById('seleccionar-ataque').style.display = 'flex';
 }
 
 function seleccionarMascotaJugador() {
