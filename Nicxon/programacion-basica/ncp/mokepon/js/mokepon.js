@@ -114,15 +114,8 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaRival() {
-    let mascotaRival = aleatorio(1,3);
-
-    if (mascotaRival == 1) {
-        spanMascotaRival.innerHTML = 'Hipodoge';
-    } else if (mascotaRival == 2) {
-        spanMascotaRival.innerHTML = 'Capipepo';
-    } else {
-        spanMascotaRival.innerHTML = 'Ratigueya';
-    }
+    let mascotaRival = aleatorio(0, mokepones.length-1);
+    spanMascotaRival.innerHTML = mokepones[mascotaRival].nombre;
 }
 
 function ataqueFuego() {
