@@ -26,7 +26,7 @@ let ataqueJugador;
 let ataqueRival;
 let vidasJugador = 3;
 let vidasRival = 3;
-
+let mokepones = [];
 class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre;
@@ -38,6 +38,8 @@ class Mokepon {
 let hipodoge = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5);
 let capipepo = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5);
 let ratigueya = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5);
+
+mokepones.push(hipodoge,capipepo,ratigueya);
 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = 'none';
