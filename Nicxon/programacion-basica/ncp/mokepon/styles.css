@@ -112,13 +112,18 @@ input{
     grid-row: auto;
     text-align: center;
 }
+.botones-ataques{
+    display: flex;
+    gap: 10px;
+}
 
 @media (max-width:560px) {
     .div-mascota{
         flex-direction: column;
     }
 }
-@media (max-width:400px) {
+
+@media (max-width:560px) {
     .botones-ataques {
         display: flex;
         flex-direction: column;
