@@ -123,9 +123,17 @@ input{
     }
 }
 
-@media (max-width:560px) {
+@media (max-width:650px) {
     .botones-ataques {
         display: flex;
         flex-direction: column;
     }
+}
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mapa {
+    border: 2px solid white;
 }

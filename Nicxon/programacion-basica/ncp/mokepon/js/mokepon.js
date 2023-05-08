@@ -18,6 +18,12 @@ const spanVidasRival = document.getElementById('vidas-rival');
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
 const CONTENEDORTARJETAS = document.getElementById('contenedor-tarjetas');
 const DIVATAQUES = document.getElementById('ataques');
+
+const SECTION_VER_MAPA = document.getElementById('ver-mapa');
+const MAPA = document.getElementById('mapa');
+
+let lienzo = MAPA.getContext("2d");
+
 let botonFuego;
 let botonAgua;
 let botonTierra;
@@ -75,6 +81,7 @@ mokepones.push(hipodoge,capipepo,ratigueya);
 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = 'none';
+    SECTION_VER_MAPA.style.display = 'none';
 
     mokepones.forEach((mokepon)=>{
         opcionDeMokepones = `<input type="radio" name="mascota" id=${mokepon.nombre} />
@@ -97,7 +104,11 @@ function iniciarJuego(){
 }
 
 function llamarSectionAtaque() {
-    sectionSeleccionarAtaque.style.display = 'flex';
+    //sectionSeleccionarAtaque.style.display = 'flex';
+    SECTION_VER_MAPA.style.display = 'flex';
+    let imagenCapipepo = new Image();
+    imagenCapipepo.src = capipepo.foto;
+    lienzo.drawImage(imagenCapipepo,20,40,100,100);
 }
 
 function seleccionarMascotaJugador() {
