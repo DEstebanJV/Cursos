@@ -87,6 +87,13 @@ hipodoge.ataques.push(
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Tierra 🌱', id: 'boton-tierra'}
 )
+hipodogeRival.ataques.push(
+    {nombre: 'Agua 💧', id: 'boton-agua'},
+    {nombre: 'Agua 💧', id: 'boton-agua'},
+    {nombre: 'Agua 💧', id: 'boton-agua'},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'}
+)
 capipepo.ataques.push(
     {nombre: 'Tierra 🌱', id: 'boton-tierra'},
     {nombre: 'Tierra 🌱', id: 'boton-tierra'},
@@ -94,7 +101,21 @@ capipepo.ataques.push(
     {nombre: 'Agua 💧', id: 'boton-agua'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'}
 )
+capipepoRival.ataques.push(
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
+    {nombre: 'Agua 💧', id: 'boton-agua'},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego'}
+)
 ratigueya.ataques.push(
+    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    {nombre: 'Agua 💧', id: 'boton-agua'},
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'}    
+)
+ratigueyaRival.ataques.push(
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
@@ -129,7 +150,7 @@ function iniciarJuego(){
 }
 
 function llamarSectionAtaque() {
-    //sectionSeleccionarAtaque.style.display = 'flex';
+    
 
 }
 
@@ -152,9 +173,9 @@ function seleccionarMascotaJugador() {
     }
     extraerAtaques(mascotaJugador);
     extraerVida(mascotaJugador);
-    seleccionarMascotaRival();
     SECTION_VER_MAPA.style.display = 'flex';
     iniciarMapa();
+
 }
 
 function extraerAtaques(mascota) {
@@ -206,12 +227,11 @@ function secuenciaAtaque(){
     })
 }
 
-function seleccionarMascotaRival() {
-    let mascotaRival = aleatorio(0, mokepones.length-1);
-    spanMascotaRival.innerHTML = mokepones[mascotaRival].nombre;
-    ataquesMokeponRival = mokepones[mascotaRival].ataques;
-    vidasRival = mokepones[mascotaRival].vida;
-    secuenciaAtaque()
+function seleccionarMascotaRival(rival) {
+    spanMascotaRival.innerHTML = rival.nombre;
+    ataquesMokeponRival = rival.ataques;
+    vidasRival = rival.vida;
+    secuenciaAtaque();
 }
 
 
@@ -385,6 +405,9 @@ function revisarColision(rival){
         return
     }
     detenerMovimiento();
-    alert('Hay colision '+ rival.nombre)
+    clearInterval(intervalo);
+    sectionSeleccionarAtaque.style.display = 'flex';
+    SECTION_VER_MAPA.style.display = 'none';
+    seleccionarMascotaRival(rival);
 }
 window.addEventListener('load', iniciarJuego);
