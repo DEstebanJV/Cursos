@@ -47,25 +47,38 @@ let vidasJugador;
 let vidasRival;
 let mokepones = [];
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, mapaFoto, x = 10, y = 10) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
-        this.ancho = 80;
-        this.alto = 80;
+        this.x = x;
+        this.y = y;
+        this.ancho = 40;
+        this.alto = 40;
         this.mapaFoto = new Image();
-        this.mapaFoto.src = foto;
+        this.mapaFoto.src = mapaFoto;
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
+    pintarMokepon(){
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto);
+    }
 }
 
-let hipodoge = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5);
-let capipepo = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5);
-let ratigueya = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5);
+let hipodoge = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png');
+let capipepo = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.webp');
+let ratigueya = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.webp');
+
+let hipodogeRival = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png', 80, 120);
+let capipepoRival = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.webp', 150, 95);
+let ratigueyaRival = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.webp',200, 190);
+
 
 hipodoge.ataques.push(
     {nombre: 'Agua 💧', id: 'boton-agua'},
@@ -293,12 +306,10 @@ function pintarCanvas(){
         0,
         MAPA.width,
         MAPA.height)
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto);
+    mascotaJugadorObjeto.pintarMokepon();
+    hipodogeRival.pintarMokepon();
+    capipepoRival.pintarMokepon();
+    ratigueyaRival.pintarMokepon();
 }
 function moverDerecha(){
     mascotaJugadorObjeto.velocidadX = 5;
