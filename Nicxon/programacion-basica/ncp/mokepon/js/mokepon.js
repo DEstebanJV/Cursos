@@ -29,12 +29,12 @@ mapaBackground.src = './assets/mokemap.webp'
 let mascotaJugadorObjeto;
 let alturaBuscada;
 let anchoDelMapa = window.innerWidth - 20;
-alturaBuscada = (anchoDelMapa * 600) / 800;
 const anchoMaximoDelMapa = 350;
 
 if (anchoDelMapa>anchoMaximoDelMapa){
     anchoDelMapa = anchoMaximoDelMapa - 20;
 }
+alturaBuscada = (anchoDelMapa * 600) / 800;
 
 MAPA.width = anchoDelMapa;
 MAPA.height = alturaBuscada;
