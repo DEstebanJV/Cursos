@@ -59,7 +59,8 @@ let vidasJugador;
 let vidasRival;
 let mokepones = [];
 class Mokepon {
-    constructor(nombre, foto, vida, mapaFoto) {
+    constructor(nombre, foto, vida, mapaFoto, id = null) {
+        this.id = id;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
@@ -87,53 +88,32 @@ let hipodoge = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack
 let capipepo = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.webp');
 let ratigueya = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.webp');
 
-let hipodogeRival = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png');
-let capipepoRival = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.webp');
-let ratigueyaRival = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.webp');
 
-
-hipodoge.ataques.push(
+const HIPODOGE_ATAQUES = [
     {nombre: 'Agua 💧', id: 'boton-agua'},
     {nombre: 'Agua 💧', id: 'boton-agua'},
     {nombre: 'Agua 💧', id: 'boton-agua'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Tierra 🌱', id: 'boton-tierra'}
-)
-hipodogeRival.ataques.push(
-    {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'}
-)
-capipepo.ataques.push(
+]
+const CAPIPEPO_ATAQUES = [
     {nombre: 'Tierra 🌱', id: 'boton-tierra'},
     {nombre: 'Tierra 🌱', id: 'boton-tierra'},
     {nombre: 'Tierra 🌱', id: 'boton-tierra'},
     {nombre: 'Agua 💧', id: 'boton-agua'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'}
-)
-capipepoRival.ataques.push(
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'},
-    {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Fuego 🔥', id: 'boton-fuego'}
-)
-ratigueya.ataques.push(
+]
+const RATIGUEYA_ATAQUES = [
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Fuego 🔥', id: 'boton-fuego'},
     {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'}    
-)
-ratigueyaRival.ataques.push(
-    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
-    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
-    {nombre: 'Fuego 🔥', id: 'boton-fuego'},
-    {nombre: 'Agua 💧', id: 'boton-agua'},
-    {nombre: 'Tierra 🌱', id: 'boton-tierra'}    
-)
+    {nombre: 'Tierra 🌱', id: 'boton-tierra'} 
+]
+
+hipodoge.ataques.push(...HIPODOGE_ATAQUES);
+capipepo.ataques.push(...CAPIPEPO_ATAQUES);
+ratigueya.ataques.push(...RATIGUEYA_ATAQUES);
 
 mokepones.push(hipodoge,capipepo,ratigueya);
 
@@ -389,6 +369,27 @@ function enviarPosicion(x, y){
             x,
             y
         })
+    })
+    .then(function (res){
+        if (res.ok){
+            res.json()
+                .then(function({enemigos}) {
+                    enemigos.forEach(function (enemigo) {
+                        let mokeponRival = null;
+                        const mokeponNombre = enemigo.mokepon.nombre || ""
+                        if (mokeponNombre === 'Hipodoge'){
+                            mokeponRival = new Mokepon('Hipodoge','./assets/mokepons_mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png');
+                        } else if (mokeponNombre === 'Capipepo'){
+                            mokeponRival = new Mokepon('Capipepo','./assets/mokepons_mokepon_capipepo_attack.png', 5, './assets/capipepo.webp');
+                        } else if (mokeponNombre === 'Ratigueya'){
+                            mokeponRival = new Mokepon('Ratigueya','./assets/mokepons_mokepon_ratigueya_attack.png', 5, './assets/ratigueya.webp');
+                        }
+                        mokeponRival.x = enemigo.x;
+                        mokeponRival.y = enemigo.y;
+                        mokeponRival.pintarMokepon();
+                    })
+                })
+        }
     })
 }
 
