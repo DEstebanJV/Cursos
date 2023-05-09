@@ -30,6 +30,7 @@ let mascotaJugadorObjeto;
 let alturaBuscada;
 let anchoDelMapa = window.innerWidth - 20;
 const anchoMaximoDelMapa = 350;
+let jugadorId = 0;
 
 if (anchoDelMapa>anchoMaximoDelMapa){
     anchoDelMapa = anchoMaximoDelMapa - 20;
@@ -169,7 +170,7 @@ function unirseAlJuego(){
             if (res.ok){
                 res.text()
                     .then(function (respuesta){
-                        console.log(respuesta)
+                        jugadorId = respuesta;
                     })
             }
         })
@@ -196,11 +197,26 @@ function seleccionarMascotaJugador() {
     } else {
         alert('Selecciona una mascota')
     }
+
+    seleccionarMokepon(mascotaJugador);
+
     extraerAtaques(mascotaJugador);
     extraerVida(mascotaJugador);
     SECTION_VER_MAPA.style.display = 'flex';
     iniciarMapa();
 
+}
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`,{
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
 }
 
 function extraerAtaques(mascota) {
