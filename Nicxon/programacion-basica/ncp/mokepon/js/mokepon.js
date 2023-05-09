@@ -373,8 +373,8 @@ function enviarPosicion(x, y){
     .then(function (res){
         if (res.ok){
             res.json()
-                .then(function({enemigos}) {
-                    enemigos.forEach(function (enemigo) {
+                .then(function({rivales}) {
+                    rivales.forEach(function (enemigo) {
                         let mokeponRival = null;
                         const mokeponNombre = enemigo.mokepon.nombre || ""
                         if (mokeponNombre === 'Hipodoge'){
