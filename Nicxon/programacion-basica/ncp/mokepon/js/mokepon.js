@@ -158,8 +158,22 @@ function iniciarJuego(){
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
     botonReiniciar.addEventListener('click',reiniciarJuego);
     seccionReiniciar.style.display = 'none';
+
+    unirseAlJuego();
 }
 
+function unirseAlJuego(){
+    fetch("http://localhost:8080/unirse")
+        .then(function (res){
+            console.log(res);
+            if (res.ok){
+                res.text()
+                    .then(function (respuesta){
+                        console.log(respuesta)
+                    })
+            }
+        })
+}
 function llamarSectionAtaque() {
     
 
