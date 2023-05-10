@@ -58,6 +58,7 @@ let ataqueRival=[];
 let vidasJugador;
 let vidasRival;
 let mokepones = [];
+let mokeponesRivales = [];
 class Mokepon {
     constructor(nombre, foto, vida, mapaFoto, id = null) {
         this.id = id;
@@ -349,9 +350,9 @@ function pintarCanvas(){
         MAPA.height)
     mascotaJugadorObjeto.pintarMokepon();
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
-    hipodogeRival.pintarMokepon();
-    capipepoRival.pintarMokepon();
-    ratigueyaRival.pintarMokepon();
+    mokeponesRivales.forEach(function (mokepon){
+        mokepon.pintarMokepon();
+    })
     if (mascotaJugadorObjeto.velocidadX !==0 || mascotaJugadorObjeto.velocidadY !==0){
         revisarColision(hipodogeRival);
         revisarColision(capipepoRival);
@@ -374,7 +375,7 @@ function enviarPosicion(x, y){
         if (res.ok){
             res.json()
                 .then(function({rivales}) {
-                    rivales.forEach(function (enemigo) {
+                    mokeponesRivales = rivales.map(function (enemigo) {
                         let mokeponRival = null;
                         const mokeponNombre = enemigo.mokepon.nombre || ""
                         if (mokeponNombre === 'Hipodoge'){
@@ -386,7 +387,7 @@ function enviarPosicion(x, y){
                         }
                         mokeponRival.x = enemigo.x;
                         mokeponRival.y = enemigo.y;
-                        mokeponRival.pintarMokepon();
+                        return mokeponRival;
                     })
                 })
         }
