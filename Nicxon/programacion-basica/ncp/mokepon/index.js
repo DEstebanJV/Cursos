@@ -19,6 +19,9 @@ class Jugador {
         this.x = x;
         this.y = y;
     }
+    asignarAtaques(ataques){
+        this.ataques = ataques;
+    }
 }
 
 class Mokepon {
@@ -42,15 +45,12 @@ app.get("/unirse",(req, res)=>{
 app.post("/mokepon/:jugadorId", (req, res) =>{
     const jugadorId = req.params.jugadorId || "";
     const nombre = req.body.mokepon || "";
-    console.log(nombre);
     const mokepon = new Mokepon(nombre);
 
     const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
     if (jugadorIndex >= 0) {
         jugadores[jugadorIndex].asignarMokepon(mokepon);
     }
-    console.log(jugadores);
-    console.log(jugadorId);
     res.end();
 })
 
@@ -70,8 +70,17 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
     res.end();
 })
 
+app.post("/mokepon/:jugadorId/ataques", (req, res) =>{
+    const jugadorId = req.params.jugadorId || "";
+    const ataques = req.body.ataques || [];
+
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].asignarAtaques(ataques);
+    }
+    res.end();
+})
 app.listen(8080,()=>{
     console.log('Servidor funcionando')
     
 })
-//./Nicxon/programacion-basica/ncp/mokepon/index.js
